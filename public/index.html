@@ -1,0 +1,781 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="author" content="Stefan Korecko"/>
+    <link rel="stylesheet" href="css/normalize.css"/>
+    <link rel="stylesheet"
+          href="css/treesBlog.css"
+          media="screen"/>
+
+
+    <title>My Blog about Trees and Other Things</title>
+</head>
+
+
+<body>
+<header id="header">
+    <div class="top">
+        <div class="menu-container" id="menu">
+            <a href="#welcome">
+                <div class="photo-menu-container" onmouseover="reveal(this)" onmouseout="hide(this)"
+                     onclick="myFunction(this)" id="nav1">
+                    <h1 class="menu-text">HOME</h1>
+                    <img src="fig/HOME.png" class="menu-image">
+
+                </div>
+            </a>
+            <a onclick="hrefFunction()">
+                <div class="photo-menu-container" onmouseover="reveal(this)" onmouseout="hide(this)"
+                     onclick="myFunction(this)" id="nav2">
+                    <h1 class="menu-text">ARTICLES</h1>
+                    <img src="fig/ARTICLES.png" class="menu-image">
+                </div>
+            </a>
+            <a href="#opinions">
+                <div class="photo-menu-container" onmouseover="reveal(this)" onmouseout="hide(this)"
+                     onclick="myFunction(this)" id="nav3">
+                    <h1 class="menu-text">OPINIONS</h1>
+                    <img src="fig/OPINIONS.png" class="menu-image">
+                </div>
+            </a>
+            <a href="#addOpinion">
+                <div class="photo-menu-container" onmouseover="reveal(this)" onmouseout="hide(this)"
+                     onclick="myFunction(this)" id="nav4">
+                    <h1 class="menu-text">ADD OPINION</h1>
+                    <img src="fig/ADD_OPINION.png" class="menu-image">
+                </div>
+            </a>
+        </div>
+    </div>
+    <img src="fig/DOWN.svg" id="downarrow" onclick="moveToMain()" onmouseover="bounceDown(this)"
+         onmouseout="stopBounce(this)">
+</header>
+
+<main id="router-view">
+</main>
+
+
+<div id="prev-next-page">
+    <a onclick="hrefFunction()" class="page" id="previous-page" onmouseover="colour3(this)"
+       onmouseout="uncolour3(this)">
+        <img src="fig/UP.svg" class="leftarrow">
+        <div class="page-content">Prev page</div>
+    </a>
+    <h2 id="ID"></h2>
+    <a onclick="hrefFunction()" class="page" id="next-page" onmouseover="colour4(this)" onmouseout="uncolour4(this)">
+        <div class="page-content">Next page</div>
+        <img src="fig/UP.svg" id="rightarrow">
+    </a>
+</div>
+<img src="fig/UP.svg" id="uparrow" onclick="moveToTop()" onmouseover="bounceUp(this)" onmouseout="stopBounce(this)">
+
+<!--Templates for html, dynamically inserted by the router -->
+
+<script id="template-welcome" type="text/template">
+    <article class="articles">
+        <div class="form">
+            <h1>HOME</h1>
+        </div>
+        <div class="home-container">
+            <div class="home-container-content">
+                <div class="container-navigator" id="home-navigator">
+                </div>
+                <div class="home-container-content-left">
+                    <h1>
+                        GAMEPLAY
+                    </h1>
+                    <p>
+                        As with other MMORPGs, players control a character avatar within a game world in third- or
+                        first-person view, exploring the landscape, fighting various monsters, completing quests, and
+                        interacting with non-player characters (NPCs) or other players. Also similar to other MMORPGs,
+                        World of Warcraft requires the player to pay for a subscription by using a credit or debit card,
+                        using prepaid Blizzard game cards or using a WoW Token purchased in-game. Players without a
+                        subscription may use a trial account that lets the player character reach up to level 20 but has
+                        many features locked.
+                    </p>
+                </div>
+                <div class="home-container-content-left">
+                    <h1>
+                        PLOT
+                    </h1>
+                    <p>
+                        Intent on settling in Durotar, Thrall's Horde expanded its ranks by inviting the undead Forsaken
+                        to join orcs, tauren, and trolls. Meanwhile, dwarves, gnomes, and the ancient night elves
+                        pledged their loyalties to the Alliance, guided by the human kingdom of Stormwind. After
+                        Stormwind's king, Varian Wrynn, mysteriously disappeared, Highlord Bolvar Fordragon served as
+                        Regent but his service was affected by the mind control of the black dragon Onyxia, who ruled in
+                        disguise as a human noblewoman. As heroes investigated Onyxia's manipulations, the ancient
+                        elemental lord Ragnaros resurfaced to endanger both the Horde and Alliance.[43] The heroes of
+                        the Horde and Alliance defeated Onyxia and sent Ragnaros back to the Elemental Plane.
+                    </p>
+                    <p>
+                        Deep within Blackrock Mountain, the black dragon Nefarian conducted twisted experiments with the
+                        blood of other dragonflights. Intent on seizing the entire area for his own, he recruited the
+                        remaining Dark Horde, a rogue army that embraced the demonic bloodlust of the old Horde. These
+                        corrupt orcs, trolls, and other races battled against Ragnaros and the Dark Iron dwarves for
+                        control of the mountain. Nefarian created the twisted chromatic dragons and a legion of other
+                        aberrations in his bid to form an army powerful enough to control Azeroth and continue the
+                        legacy of his infamous father, Deathwing the Destroyer. Nefarian was vanquished by the heroes
+                        from the Horde and the Alliance.
+                    </p>
+                </div>
+                <div class="home-container-content-left">
+                    <h1>
+                        DEVELOPMENT
+                    </h1>
+                    <p>
+                        World of Warcraft was first announced by Blizzard at the ECTS trade show in September 2001.[44]
+                        Released in 2004, development of the game took roughly 4–5 years, including extensive testing.
+                        The 3D graphics in World of Warcraft use elements of the proprietary graphics engine originally
+                        used in Warcraft III.[44] The game was designed to be an open environment where players are
+                        allowed to do what they please.[45] Quests are optional and were designed to help guide players,
+                        allow character development, and to spread characters across different zones to try to avoid
+                        what developers called player collision.[46] The game interface allows players to customize
+                        appearance and controls, and to install add-ons and other modifications.[47]
+                    </p>
+                    <p>
+                        World of Warcraft runs natively on both Macintosh and Windows platforms. Boxed copies of the
+                        game use a hybrid CD to install the game, eliminating the need for separate Mac and Windows
+                        retail products. The game allows all users to play together, regardless of their operating
+                        system. Although there is no official version for any other platform, support for World of
+                        Warcraft is present in Windows API implementations Wine and CrossOver allowing the game to be
+                        played under Linux and FreeBSD.[48] While a native Linux client is neither released nor
+                        announced by Blizzard, in January 2011 IT journalist Michael Larabel indicated in a Phoronix
+                        article that an internal Linux client might exist but is not released due to the
+                        non-standardization of the Linux distro ecosystem.[49]
+                    </p>
+                </div>
+                <div class="home-container-content-left">
+                    <h1>
+                        SECURITY CONCERNS
+                    </h1>
+                    <p>
+                        When players create World of Warcraft accounts, they are asked to choose a username and
+                        password. Afterward, whenever they play World of Warcraft, they are asked to supply the same
+                        username and password in full. This is also the case when using account management facilities
+                        online. This type of authentication is vulnerable to keystroke logging. While this is not unique
+                        to World of Warcraft and is common to many MMORPGs, the game has been directly targeted with
+                        trojans being specifically crafted to capture account login details.[117] Attacks have been
+                        reported as early as May 2006 and may extend as far back as July 30, 2005.[118] The game does,
+                        however, allow players to save their account name to the program to allow the player to only
+                        have to type their password.[119]
+                    </p>
+                    <p>
+                        World of Warcraft runs natively on both Macintosh and Windows platforms. Boxed copies of the
+                        game use a hybrid CD to install the game, eliminating the need for separate Mac and Windows
+                        retail products. The game allows all users to play together, regardless of their operating
+                        system. Although there is no official version for any other platform, support for World of
+                        Warcraft is present in Windows API implementations Wine and CrossOver allowing the game to be
+                        played under Linux and FreeBSD.[48] While a native Linux client is neither released nor
+                        announced by Blizzard, in January 2011 IT journalist Michael Larabel indicated in a Phoronix
+                        article that an internal Linux client might exist but is not released due to the
+                        non-standardization of the Linux distro ecosystem.[49]
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="home-container-content-top">
+            <img src="fig/WOW.svg">
+        </div>
+    </article>
+    <footer>
+        <div class="footer-container">
+            <p>FOLLOW <a href="https://www.instagram.com/warcraft/"><b>WARCRAFT</b></a></p>
+            <p>
+                WEBSITE CREATED BY:
+                <b>
+                    MICHAL HORNYÁK
+                </b>
+            </p>
+            <div class="icon">
+                <div class="mail">
+                    <a href="mailto:michal.hornyak@student.tuke.sk">
+                        <svg id="Capa_1" enable-background="new 0 0 479.058 479.058"
+                             viewBox="0 0 479.058 479.058"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="m434.146 59.882h-389.234c-24.766 0-44.912 20.146-44.912 44.912v269.47c0 24.766 20.146 44.912 44.912 44.912h389.234c24.766 0 44.912-20.146 44.912-44.912v-269.47c0-24.766-20.146-44.912-44.912-44.912zm0 29.941c2.034 0 3.969.422 5.738 1.159l-200.355 173.649-200.356-173.649c1.769-.736 3.704-1.159 5.738-1.159zm0 299.411h-389.234c-8.26 0-14.971-6.71-14.971-14.971v-251.648l199.778 173.141c2.822 2.441 6.316 3.655 9.81 3.655s6.988-1.213 9.81-3.655l199.778-173.141v251.649c-.001 8.26-6.711 14.97-14.971 14.97z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</script>
+
+<script id="template-articles" type="text/template">
+    <div class="home-container">
+        <div class="home-container-content">
+            <div class="form">
+                <h1>ARTICLES</h1>
+            </div>
+            {{#articles}}
+            <div class="article-container" id="article" onmouseover="colour1(this)" onmouseout="uncolour1(this)">
+                <h2 class="article-container-id">#{{id}}</h2>
+                <div class="article-container-content-left">
+                    <h2><a href="{{detailLink}}" onclick="myFunction(this)">{{title}}</a></h2>
+                    <div>
+                        {{{content}}}
+                    </div>
+                    <p>
+                        by {{author}}
+                    </p>
+                </div>
+            </div>
+            {{/articles}}
+        </div>
+    </div>
+    <div class="navigation-bar">
+    </div>
+    <footer>
+        <div class="footer-container">
+            <p>FOLLOW <a href="https://www.instagram.com/warcraft/"><b>WARCRAFT</b></a></p>
+            <p>
+                WEBSITE CREATED BY:
+                <b>
+                    MICHAL HORNYÁK
+                </b>
+            </p>
+            <div class="icon">
+                <div class="mail">
+                    <a href="mailto:michal.hornyak@student.tuke.sk">
+                        <svg id="Capa_1" enable-background="new 0 0 479.058 479.058"
+                             viewBox="0 0 479.058 479.058"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="m434.146 59.882h-389.234c-24.766 0-44.912 20.146-44.912 44.912v269.47c0 24.766 20.146 44.912 44.912 44.912h389.234c24.766 0 44.912-20.146 44.912-44.912v-269.47c0-24.766-20.146-44.912-44.912-44.912zm0 29.941c2.034 0 3.969.422 5.738 1.159l-200.355 173.649-200.356-173.649c1.769-.736 3.704-1.159 5.738-1.159zm0 299.411h-389.234c-8.26 0-14.971-6.71-14.971-14.971v-251.648l199.778 173.141c2.822 2.441 6.316 3.655 9.81 3.655s6.988-1.213 9.81-3.655l199.778-173.141v251.649c-.001 8.26-6.711 14.97-14.971 14.97z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</script>
+
+<script id="template-articles-error" type="text/template">
+
+    <article>
+        <h2>Articles acquisition failed</h2>
+        <p>
+            {{errMessage}}
+        </p>
+    </article>
+</script>
+
+
+<script id="template-opinions" type="text/template">
+    <article id="artOpinions">
+
+        <div class="form">
+            <h1>OPINIONS</h1>
+        </div>
+        {{#.}}
+        <section class="center-opinion">
+            <div class="opinion" id="opinion" onmouseout="colour2(this)" onmouseover="uncolour2(this)">
+                <div class="opinion-photo">
+                    <img src="{{url}}" alt="Comment image">
+                    <img src="{{faction}}" alt="Faction image" class="faction-opinion-icon">
+                </div>
+                <div class="opinion-commentary">
+                    <div class="background" id="brown">
+                    </div>
+                    <div class="opinion-content">
+                        <h2>{{name}} </h2>
+                        <p class="date">Date: &nbsp{{created}}</p>
+                        <p class="date">E-mail: &nbsp{{email}}</p>
+                        <p>Favorite datadisk: {{favorite}}</p>
+                        <p class="opinion-datadisk">Played before: {{datadisk}}</p>
+                        <br>
+                        <p>{{comment}}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {{/.}}
+        {{^.}}
+        <section class="center-opinion">
+            Sorry, no opinions found.
+        </section>
+        {{/.}}
+        <footer>
+            <div class="footer-container">
+                <p>FOLLOW <a href="https://www.instagram.com/warcraft/"><b>WARCRAFT</b></a></p>
+                <p>
+                    WEBSITE CREATED BY:
+                    <b>
+                        MICHAL HORNYÁK
+                    </b>
+                </p>
+                <div class="icon">
+                    <div class="mail">
+                        <a href="mailto:michal.hornyak@student.tuke.sk">
+                            <svg id="Capa_1" enable-background="new 0 0 479.058 479.058"
+                                 viewBox="0 0 479.058 479.058"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="m434.146 59.882h-389.234c-24.766 0-44.912 20.146-44.912 44.912v269.47c0 24.766 20.146 44.912 44.912 44.912h389.234c24.766 0 44.912-20.146 44.912-44.912v-269.47c0-24.766-20.146-44.912-44.912-44.912zm0 29.941c2.034 0 3.969.422 5.738 1.159l-200.355 173.649-200.356-173.649c1.769-.736 3.704-1.159 5.738-1.159zm0 299.411h-389.234c-8.26 0-14.971-6.71-14.971-14.971v-251.648l199.778 173.141c2.822 2.441 6.316 3.655 9.81 3.655s6.988-1.213 9.81-3.655l199.778-173.141v251.649c-.001 8.26-6.711 14.97-14.971 14.97z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </article>
+</script>
+
+
+<script id="template-addOpinion" type="text/template">
+    <article id="artOpnFrm" class="js-container">
+
+        <form id="form1">
+            <img src="fig/sylvanas.png" class="form-left-img" alt="Sylvanas">
+            <div class="form">
+                <h1>TAKE A SURVEY</h1>
+                <br>
+                <br>
+                <div class="form-field">
+                    <input type="text" name="username" id="username" placeholder=" " autocomplete="off" required/>
+                    <label for="username" class="label-name">
+                    <span class="form-content-name">
+                        Name
+                    </span>
+                    </label>
+                </div>
+                <div class="form-field">
+                    <input type="email" name="email" id="email" placeholder=" " autocomplete="off" required/>
+                    <label for="email" class="label-name">
+                    <span class="form-content-name">
+                        E-mail
+                    </span>
+                    </label>
+                </div>
+                <div class="form-field">
+                    <input type="url" name="url" id="url"
+                           placeholder=" "
+
+                           pattern="https://.*" size="30">
+                    <label for="email" class="label-name">
+                    <span class="form-content-name">
+                        URL of your picture
+                    </span>
+                    </label>
+                </div>
+                <div class="form-field-label" id="played-datadisks">
+                    <label>Which World of Warcraft expansions did you play?</label>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="exp1" name="like" data-value="WoW Classic">
+                        <label for="exp1" class="label-name">
+                            World of Warcraft: Classic
+                        </label>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="exp2" name="like" data-value="WoW Tbc">
+                        <label for="exp2" class="label-name">
+                            World of Warcraft: The Burning Crusade
+                        </label>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="exp3" name="like" data-value="WoW Wotlk">
+                        <label for="exp3" class="label-name">
+                            World of Warcraft: Wrath of the Lich King
+                        </label>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="exp4" name="like" data-value="WoW Cata">
+                        <label for="exp4" class="label-name">
+                            World of Warcraft: Cataclysm
+                        </label>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="exp5" name="like" data-value="WoW Pandaria">
+                        <label for="exp5" class="label-name">
+                            World of Warcraft: Pandaria
+                        </label>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="exp6" name="like" data-value="WoW WoD">
+                        <label for="exp6" class="label-name">
+                            World of Warcraft: Warlords of Dreanor
+                        </label>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="exp7" name="like" data-value="WoW Legion">
+                        <label for="exp7" class="label-name">
+                            World of Warcraft: Legion
+                        </label>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="exp8" name="like" data-value="WoW BoA">
+                        <label for="exp8" class="label-name">
+                            World of Warcraft: Battle for Azeroth
+                        </label>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="exp9" name="like" data-value="WoW SHL">
+                        <label for="exp9" class="label-name">
+                            World of Warcraft: Shadowlands
+                        </label>
+                    </div>
+                </div>
+                <div class="form-field">
+                    <input list="WoW-datadisks" id="datadisk" name="Wow datadisk" placeholder=" "/>
+                    <label for="datadisk" class="label-name">
+                    <span class="form-content-name">
+                        What is your favorite datadisk?
+                    </span>
+                    </label>
+                    <datalist id="WoW-datadisks">
+                        <option value="World of Warcraft: Classic">
+                        <option value="World of Warcraft: The Burning Crusade">
+                        <option value="World of Warcraft: Wrath of the Lich King">
+                        <option value="World of Warcraft: Cataclysm">
+                        <option value="World of Warcraft: Pandaria">
+                        <option value="World of Warcraft: Warlords of Dreanor">
+                        <option value="World of Warcraft: Legion">
+                        <option value="World of Warcraft: Battle for Azeroth">
+                        <option value="World of Warcraft: Shadowlands">
+                    </datalist>
+                </div>
+                <div class="form-field-label" id="like">
+                    <label>Who do you prefer to play?</label>
+                    <div class="form-horizontal-menu">
+                        <div class="form-radiobutton" id="alliance-opinion">
+                            <input type="radio" id="alliance" name="faction" value="Alliance">
+                            <label for="alliance" class="label-name">
+                                Alliance
+                            </label>
+                        </div>
+                        <div class="form-radiobutton" id="horde-opinion">
+                            <input type="radio" id="horde" name="faction" value="Horde">
+                            <label for="horde" class="label-name">
+                                Horde
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-textarea-field">
+                    <label>Your commentary</label>
+                    <textarea name="textarea" id="textarea" placeholder="Type your commentary..." spellcheck="true"
+                              autocomplete="off" rows="5" cols="33" required></textarea>
+
+                </div>
+                <div class="form-horizontal-menu">
+                    <button type="submit" class="btn btn-primary btn-ghost">SEND</button>
+                    <button type="reset" class="btn btn-primary btn-ghost">RESET</button>
+                </div>
+            </div>
+        </form>
+        <footer>
+            <div class="footer-container">
+                <p>FOLLOW <a href="https://www.instagram.com/warcraft/"><b>WARCRAFT</b></a></p>
+                <p>
+                    WEBSITE CREATED BY:
+                    <b>
+                        MICHAL HORNYÁK
+                    </b>
+                </p>
+                <div class="icon">
+                    <div class="mail">
+                        <a href="mailto:michal.hornyak@student.tuke.sk">
+                            <svg id="Capa_1" enable-background="new 0 0 479.058 479.058"
+                                 viewBox="0 0 479.058 479.058"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="m434.146 59.882h-389.234c-24.766 0-44.912 20.146-44.912 44.912v269.47c0 24.766 20.146 44.912 44.912 44.912h389.234c24.766 0 44.912-20.146 44.912-44.912v-269.47c0-24.766-20.146-44.912-44.912-44.912zm0 29.941c2.034 0 3.969.422 5.738 1.159l-200.355 173.649-200.356-173.649c1.769-.736 3.704-1.159 5.738-1.159zm0 299.411h-389.234c-8.26 0-14.971-6.71-14.971-14.971v-251.648l199.778 173.141c2.822 2.441 6.316 3.655 9.81 3.655s6.988-1.213 9.81-3.655l199.778-173.141v251.649c-.001 8.26-6.711 14.97-14.971 14.97z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </article>
+</script>
+
+<script id="template-article" type="text/template">
+    <div class="home-container">
+        <div class="home-container-content">
+            <h1 id="article-title">{{title}}</h1>
+            <div class="article-container">
+                <h2 class="article-container-id">#{{id}}</h2>
+                <div class="article-container-content-left">
+                    <h2>by {{author}}</h2>
+                    <div>
+                        {{#imageLink}}
+                        <figure>
+                            <img src="{{imageLink}}" alt="article figure"/>
+                        </figure>
+                        {{/imageLink}}
+                        <div>{{{content}}}</div>
+                        <p>
+                            Keywords:
+                            {{tags}}
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="bottom-navigation">
+                <a href="{{backLink}}" class="linkAsButton" onclick="revealBottomBar()">Back</a>
+                <a href="{{editLink}}" class="linkAsButton">Edit</a>
+                <a href="{{deleteLink}}" class="linkAsButton">Delete</a>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="template-article-form" type="text/template">
+    <article>
+        <form id="articleForm">
+            <div class="form">
+                <h1>{{formTitle}}</h1>
+
+                <div class="form-field">
+                    <input type="text" name="author" id="author" value="{{author}}" placeholder=" " autocomplete="off"
+                           title="Article author, max. length 100 characters." maxlength="100" required/>
+                    <label for="author" class="label-name">
+                    <span class="form-content-name">
+                        Author
+                    </span>
+                    </label>
+                </div>
+                <div class="form-field">
+                    <input type="text" name="title" id="title" value="{{title}}" placeholder=" " autocomplete="off"
+                           title="Article title, mandatory item, max. length: 100 characters.
+The first character must not be a space." pattern="\S[\S\s]*" maxlength="100" required/>
+                    <label for="title" class="label-name">
+                    <span class="form-content-name">
+                        Title
+                    </span>
+                    </label>
+                </div>
+                <div class="form-field">
+                    <input type="url" name="imageLink" id="imageLink" value="{{imageLink}}" placeholder=" "
+                           autocomplete="off"
+                           title="Image URL, max. length 100 characters." maxlength="100"/>
+                    <label for="imageLink" class="label-name">
+                    <span class="form-content-name">
+                        Image (URL)
+                    </span>
+                    </label>
+                </div>
+                <label></label>
+                <div class="form-horizontal-menu">
+                    <button type="button" id="btShowFileUpload">
+                        Upload image
+                    </button>
+                </div>
+                <div class="form-field">
+
+                    <fieldset class="added hiddenElm" id="fsetFileUpload">
+                        <legend>Upload image</legend>
+                        <input type="file" id="flElm" name="file" accept="image/jpeg, image/png"/>
+                        <br/>
+                        <div class="form-horizontal-menu">
+                            <button type="button" id="btFileUpload">
+                                Send image
+                            </button>
+                            <button type="button" id="btCancelFileUpload">
+                                Cancel upload
+                            </button>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="form-textarea-field">
+                    <label for="content">Article content:</label>
+                    <textarea name="content" id="content" spellcheck="true" lang="sk"
+                              placeholder="Type your commentary..."
+                              title="Article content, mandatory item, can be plain text or in HTML."
+                              autocomplete="off" rows="5" cols="33" required>
+               {{content}}
+                </textarea>
+                </div>
+                <div class="form-field">
+                    <input type="text" name="tags" id="tags" value="{{tags}}" placeholder=" " autocomplete="off"
+                           title="Keyword list, comma separated." maxlength="100" required/>
+                    <label for="tags" class="label-name">
+                    <span class="form-content-name">
+                        Keywords
+                    </span>
+                    </label>
+                </div>
+
+                <div class="form-horizontal-menu">
+                    <button type="submit" class="btn btn-primary btn-ghost">{{submitBtTitle}}</button>
+                    <button type="reset" class="btn btn-primary btn-ghost">RESET</button>
+                </div>
+
+            </div>
+        </form>
+    </article>
+
+    <div class="bottom-navigation">
+        <a href="{{backLink}}" class="linkAsButton">Back</a>
+    </div>
+</script>
+
+<script>
+
+    document.getElementById("ID").innerHTML = localStorage.getItem("offset")
+    function reveal(x) {
+        x.children[0].className += ' visible-text';
+        x.children[1].className += ' visible-image';
+
+    }
+
+    function hide(x) {
+        if (x.children[0].className === "menu-text visible-text") {
+            x.children[0].className = 'menu-text';
+            x.children[1].className = 'menu-image';
+        }
+    }
+
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+        var currentScrollPos = window.pageYOffset;
+        if (window.pageYOffset > 500) {
+            document.getElementById("menu").style.transform = "translateY(-40%)";
+            document.getElementById("menu").style.opacity = "0";
+        } else {
+            document.getElementById("menu").style.transform = "translateY(0)";
+            document.getElementById("menu").style.opacity = "1";
+        }
+
+        if (window.pageYOffset > 80) {
+            document.getElementById("uparrow").style.opacity = "1";
+
+        } else {
+            document.getElementById("uparrow").style.opacity = "0";
+        }
+
+        if (window.pageYOffset > 0) {
+            document.getElementById("downarrow").style.visibility = "hidden";
+            document.getElementById("downarrow").style.opacity = "0";
+        } else {
+            document.getElementById("downarrow").style.visibility = "visible";
+            document.getElementById("downarrow").style.opacity = "1";
+
+        }
+        if (document.getElementById("nav1").children[0].className === 'menu-text clicked-text') {
+            var position = currentScrollPos - 500
+            document.getElementById("home-navigator").style.height = `${position}px`
+        }
+        prevScrollpos = currentScrollPos;
+    }
+
+    function myFunction(x) {
+        var elmnt = document.getElementById("router-view");
+        document.getElementById("prev-next-page").style.display = "none";
+        document.getElementById("router-view").style.minHeight = "100vh";
+        switch (x) {
+            case document.getElementById("nav1"):
+                document.getElementById("router-view").style.backgroundImage = "url('fig/HOME_BACKGROUND.png')";
+                break;
+            case document.getElementById("nav2"):
+                document.getElementById("router-view").style.backgroundImage = "url('fig/ARTICLES_BACKGROUND.png')";
+                document.getElementById("prev-next-page").style.display = "flex";
+                break;
+            case document.getElementById("nav3"):
+                document.getElementById("router-view").style.backgroundImage = "url('fig/OPINIONS_BACKGROUND.png')";
+                break;
+            case document.getElementById("nav4"):
+                document.getElementById("router-view").style.backgroundImage = "url('fig/BackGround.png')";
+                break;
+            case document.getElementById("nav5"):
+                document.getElementById("router-view").style.backgroundImage = "url('fig/ADDARTICLE_BACKGROUND.png')";
+                break;
+        }
+        resetClicked();
+        x.children[0].className += ' clicked-text';
+        x.children[1].className += ' clicked-image';
+
+        elmnt.scrollIntoView(true);
+    }
+
+    function colour1(x) {
+        x.children[1].children[0].children[0].style.color = '#3483b7'
+        x.children[0].className = 'article-container-id-hover'
+        x.children[1].className = 'article-container-content-left-hover'
+    }
+
+    function uncolour1(x) {
+        x.children[1].children[0].children[0].style.color = 'white'
+        x.children[0].className = 'article-container-id'
+        x.children[1].className = 'article-container-content-left'
+    }
+
+    function colour2(x) {
+        x.children[0].className = 'opinion-photo'
+        x.children[1].children[1].className = 'opinion-content'
+        x.children[1].children[0].className = 'background'
+
+    }
+
+    function uncolour2(x) {
+        x.children[0].className = 'opinion-photo-hover'
+        x.children[1].children[1].className = 'opinion-content-hover'
+        x.children[1].children[0].className = 'background-hover'
+
+    }
+
+    function colour3(x) {
+        x.children[1].style.color = "#3483b7"
+    }
+
+    function uncolour3(x) {
+        x.children[1].style.color = "white"
+    }
+
+    function colour4(x) {
+        x.children[0].style.color = "#3483b7"
+    }
+
+    function uncolour4(x) {
+        x.children[0].style.color = "white"
+    }
+
+    function resetClicked() {
+        for (let i = 1; i < 5; i++) {
+            document.getElementById(`nav${i}`).children[0].className = 'menu-text';
+            document.getElementById(`nav${i}`).children[1].className = 'menu-image';
+        }
+    }
+
+    function moveToTop() {
+        var elmnt = document.getElementById("menu");
+        elmnt.scrollIntoView(true);
+    }
+
+    function moveToMain() {
+        var elmnt = document.getElementById("router-view");
+        elmnt.scrollIntoView(true);
+    }
+
+    function bounceUp(x) {
+        x.style.animation = "2s BOUNCE-UP infinite"
+    }
+
+    function bounceDown(x) {
+        x.style.animation = "2s BOUNCE-DOWN infinite"
+    }
+
+    function stopBounce(x) {
+        x.style.animation = ""
+    }
+
+    function revealBottomBar(){
+        document.getElementById("prev-next-page").style.display = "flex"
+    }
+
+
+    function hrefFunction() {
+        let max = localStorage.getItem("max")
+        let offset = localStorage.getItem("offset")
+        window.location.href = "#articles/" + offset + "/" + max
+    }
+
+</script>
+
+<!--JavaScript code, inserted as a module-->
+<script type="module" src="js/index.js"></script>
+
+</body>
+</html>
